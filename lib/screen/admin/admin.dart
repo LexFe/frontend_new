@@ -19,6 +19,8 @@ class _AdminPagesState extends State<AdminPages> {
     AdminController(context: context).handleGetAdmin();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,33 +88,34 @@ class _AdminPagesState extends State<AdminPages> {
                 }
 
                 return ListView.builder(
-                    padding: const EdgeInsets.all(10),
-                    // physics: const BouncingScrollPhysics(),
-                    itemCount: state.adminModel.length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: Card(
-                          elevation: 2,
-                          color: Colors.white,
-                          child: ListTile(
-                            leading: const Icon(
-                              Icons.account_circle_rounded,
-                              color: Colors.blue,
-                              size: 40,
-                            ),
-                            title: Text(state.adminModel[index].name ?? ''),
-                            subtitle: Text(state.adminModel[index].phone ?? ''),
-                            trailing: const Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: Colors.black26,
-                              size: 20,
-                            ),
+                  padding: const EdgeInsets.all(10),
+                  // physics: const BouncingScrollPhysics(),
+                  itemCount: state.adminModel.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Card(
+                        elevation: 2,
+                        color: Colors.white,
+                        child: ListTile(
+                          leading: const Icon(
+                            Icons.account_circle_rounded,
+                            color: Colors.blue,
+                            size: 40,
+                          ),
+                          title: Text(state.adminModel[index].name ?? ''),
+                          subtitle: Text(state.adminModel[index].phone ?? ''),
+                          trailing: const Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Colors.black26,
+                            size: 20,
                           ),
                         ),
-                      );
-                    });
+                      ),
+                    );
+                  },
+                );
               },
             ),
           ),
