@@ -37,30 +37,30 @@ class _PredictsPagesState extends State<PredictsPages> {
           ),
         ),
       ),
-      body: ListView(
-        shrinkWrap: true,
-        // physics: const BouncingScrollPhysics(),
-        children: [
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: buildPhoneTextFrom(
-                context: context,
-                labelText: 'ຊື່',
-                hintText: 'ຄົ້ນຫາ',
-                onChanged: (value) {
-                  context
-                      .read<PredictsBloc>()
-                      .add(SearchPredict(search: value));
-                }),
-          ),
-          RefreshIndicator(
-            color: Colors.blue,
-            onRefresh: () =>
-                PredictsController(context: context).handleGetPredict(),
-            child: BlocBuilder<PredictsBloc, PredictsState>(
+      body: RefreshIndicator(
+        color: Colors.blue,
+        onRefresh: () =>
+            PredictsController(context: context).handleGetPredict(),
+        child: ListView(
+          shrinkWrap: true,
+          // physics: const BouncingScrollPhysics(),
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: buildPhoneTextFrom(
+                  context: context,
+                  labelText: 'ຊື່',
+                  hintText: 'ຄົ້ນຫາ',
+                  onChanged: (value) {
+                    context
+                        .read<PredictsBloc>()
+                        .add(SearchPredict(search: value));
+                  }),
+            ),
+            BlocBuilder<PredictsBloc, PredictsState>(
               builder: (context, state) {
                 if (state.status == StateStatus.loading) {
                   return const Center(
@@ -107,8 +107,8 @@ class _PredictsPagesState extends State<PredictsPages> {
                     });
               },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

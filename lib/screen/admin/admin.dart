@@ -19,8 +19,6 @@ class _AdminPagesState extends State<AdminPages> {
     AdminController(context: context).handleGetAdmin();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,77 +47,82 @@ class _AdminPagesState extends State<AdminPages> {
           ),
         ),
       ),
-      body: ListView(
-        shrinkWrap: true,
-        // physics: const BouncingScrollPhysics(),
-        children: [
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: buildPhoneTextFrom(
-                context: context,
-                labelText: 'ຊື່',
-                hintText: 'ຄົ້ນຫາ',
-                onChanged: (value) {
-                  context
-                      .read<AdminBloc>()
-                      .add(SearchAdminEvent(search: value));
-                }),
-          ),
-          RefreshIndicator(
-            color: Colors.blue,
-            onRefresh: () => AdminController(context: context).handleGetAdmin(),
-            child: BlocBuilder<AdminBloc, AdminState>(
-              builder: (context, state) {
-                if (state.status == StateStatus.loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.blue,
-                    ),
-                  );
-                }
-
-                if (state.adminModel.isEmpty) {
-                  return const Center(
-                    child: Text('ບໍ່ພົບຂໍ້ມູນ'),
-                  );
-                }
-
-                return ListView.builder(
-                  padding: const EdgeInsets.all(10),
-                  // physics: const BouncingScrollPhysics(),
-                  itemCount: state.adminModel.length,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: Card(
-                        elevation: 2,
-                        color: Colors.white,
-                        child: ListTile(
-                          leading: const Icon(
-                            Icons.account_circle_rounded,
-                            color: Colors.blue,
-                            size: 40,
-                          ),
-                          title: Text(state.adminModel[index].name ?? ''),
-                          subtitle: Text(state.adminModel[index].phone ?? ''),
-                          trailing: const Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Colors.black26,
-                            size: 20,
-                          ),
-                        ),
+      body: RefreshIndicator(
+        color: Colors.blue,
+        onRefresh: () => AdminController(context: context).handleGetAdmin(),
+        child: ListView(
+          shrinkWrap: true,
+          // physics: const BouncingScrollPhysics(),
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: buildPhoneTextFrom(
+                  context: context,
+                  labelText: 'ຊື່',
+                  hintText: 'ຄົ້ນຫາ',
+                  onChanged: (value) {
+                    context
+                        .read<AdminBloc>()
+                        .add(SearchAdminEvent(search: value));
+                  }),
+            ),
+            RefreshIndicator(
+              color: Colors.blue,
+              onRefresh: () =>
+                  AdminController(context: context).handleGetAdmin(),
+              child: BlocBuilder<AdminBloc, AdminState>(
+                builder: (context, state) {
+                  if (state.status == StateStatus.loading) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.blue,
                       ),
                     );
-                  },
-                );
-              },
+                  }
+
+                  if (state.adminModel.isEmpty) {
+                    return const Center(
+                      child: Text('ບໍ່ພົບຂໍ້ມູນ'),
+                    );
+                  }
+
+                  return ListView.builder(
+                    padding: const EdgeInsets.all(10),
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: state.adminModel.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Card(
+                          elevation: 2,
+                          color: Colors.white,
+                          child: ListTile(
+                            leading: const Icon(
+                              Icons.account_circle_rounded,
+                              color: Colors.blue,
+                              size: 40,
+                            ),
+                            title: Text(state.adminModel[index].name ?? ''),
+                            subtitle: Text(state.adminModel[index].phone ?? ''),
+                            trailing: const Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Colors.black26,
+                              size: 20,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
