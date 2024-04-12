@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/screen/admin/bloc/admin_bloc.dart';
+import 'package:frontend/screen/admin_detail/bloc/admin_detail_bloc.dart';
 import 'package:frontend/screen/home/bloc/home_bloc.dart';
 import 'package:frontend/screen/login/bloc/login_bloc.dart';
 import 'package:frontend/screen/main_manage/bloc/main_manage_bloc.dart';
@@ -29,6 +30,9 @@ class AppBlocProvider {
         ),
         BlocProvider(
           create: (context) => LoginBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AdminDetailBloc(),
         ),
       ];
 }

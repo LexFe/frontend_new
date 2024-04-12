@@ -52,7 +52,7 @@ class MainManagePages extends StatelessWidget {
               title: "ຈັດການຂໍ້ມູນແອັດມິນ",
               iconData: Icons.admin_panel_settings,
               onTap: () {
-                AdminController(context: context).handleGetAdmin();
+                Navigator.pushNamed(context, AppRoutes.Admin);
               }),
         ],
       ),

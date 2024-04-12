@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/common/enum/state_status.dart';
 import 'package:frontend/controller/admin_controller.dart';
+import 'package:frontend/routes/name.dart';
 import 'package:frontend/screen/admin/bloc/admin_bloc.dart';
 
 class AdminPages extends StatefulWidget {
@@ -21,6 +22,16 @@ class _AdminPagesState extends State<AdminPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, AppRoutes.AdminDetail);
+        },
+        backgroundColor: Colors.blue,
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+      ),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.blue,
@@ -28,7 +39,7 @@ class _AdminPagesState extends State<AdminPages> {
         centerTitle: true,
         foregroundColor: Colors.white,
         title: const Text(
-          'ວິເຄາະແບບຫຼາຍ',
+          'ແກ້ໄຂຂໍ້ມູນແອັດມີນ',
           style: TextStyle(
             color: Colors.white,
             fontSize: 26,

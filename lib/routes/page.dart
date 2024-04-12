@@ -4,6 +4,8 @@ import 'package:frontend/global.dart';
 import 'package:frontend/routes/name.dart';
 import 'package:frontend/screen/admin/admin.dart';
 import 'package:frontend/screen/admin/bloc/admin_bloc.dart';
+import 'package:frontend/screen/admin_detail/admin_detail.dart';
+import 'package:frontend/screen/admin_detail/bloc/admin_detail_bloc.dart';
 import 'package:frontend/screen/home/bloc/home_bloc.dart';
 import 'package:frontend/screen/home/home.dart';
 import 'package:frontend/screen/login/bloc/login_bloc.dart';
@@ -67,6 +69,13 @@ class AppPage {
         page: const LoginPages(),
         bloc: BlocProvider(
           create: (_) => LoginBloc(),
+        ),
+      ),
+      PageEntity(
+        route: AppRoutes.AdminDetail,
+        page: const AdminDetailPages(),
+        bloc: BlocProvider(
+          create: (_) => AdminDetailBloc(),
         ),
       ),
     ];
