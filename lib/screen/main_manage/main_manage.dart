@@ -46,7 +46,9 @@ class MainManagePages extends StatelessWidget {
           buildItem(
               title: "ຈັດການຂໍ້ມູນຜູ້ໃຊ້",
               iconData: Icons.supervised_user_circle,
-              onTap: () {}),
+              onTap: () {
+                Navigator.pushNamed(context, AppRoutes.User);
+              }),
           buildItem(
               title: "ຈັດການຂໍ້ມູນແອັດມິນ",
               iconData: Icons.admin_panel_settings,

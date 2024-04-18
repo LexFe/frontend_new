@@ -22,4 +22,7 @@ class AppRoutes {
 
   // ignore: constant_identifier_names
   static const String AdminDetail = "/admin-detail";
+
+  // ignore: constant_identifier_names
+  static const User = "/user";
 }
