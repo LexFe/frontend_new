@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/common/enum/state_status.dart';
 import 'package:frontend/common/utils/http_utils.dart';
 import 'package:frontend/model/admin_model.dart';
+import 'package:frontend/routes/name.dart';
 import 'package:frontend/screen/admin/bloc/admin_bloc.dart';
 
 class AdminController {
@@ -27,6 +28,29 @@ class AdminController {
               .read<AdminBloc>()
               .add(const ChangeStatusEvent(status: StateStatus.loaded));
         }
+      } else {
+        debugPrint(response.data);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> onclickEditAdmin({required AdminModel adminModel}) async {
+    Navigator.pushNamed(context, AppRoutes.AdminDetail, arguments: adminModel);
+  }
+
+  Future<void> handleDeleteAdmin({required int id}) async {
+    try {
+      Response response = await HttpUtil().delete('/user/delete?id=$id');
+      if (response.statusCode == 200) {
+        handleGetAdmin();
+        Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('ສຳເລັດການລົບຂໍ້ມູນ'),
+          ),
+        );
       } else {
         debugPrint(response.data);
       }

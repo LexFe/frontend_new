@@ -108,10 +108,59 @@ class _AdminPagesState extends State<AdminPages> {
                             ),
                             title: Text(state.adminModel[index].name ?? ''),
                             subtitle: Text(state.adminModel[index].phone ?? ''),
-                            trailing: const Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: Colors.black26,
-                              size: 20,
+                            trailing: PopupMenuButton<int>(
+                              itemBuilder: (context) => [
+                                const PopupMenuItem(
+                                  value: 1,
+                                  child: Text("ແກ້ໄຂ"),
+                                ),
+                                const PopupMenuItem(
+                                  value: 2,
+                                  child: Text("ລົບ"),
+                                ),
+                              ],
+                              onSelected: (value) {
+                                if (value == 1) {
+                                  AdminController(context: context)
+                                      .onclickEditAdmin(
+                                          adminModel: state.adminModel[index]);
+                                } else if (value == 2) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: const Text('ລົບຂໍ້ມູນ'),
+                                        content: const Text(
+                                            'ທ່ານຕ້ອງການລົບຂໍ້ມູນນີ້ບໍ?'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('ຍົກເລີກ'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              AdminController(context: context)
+                                                  .handleDeleteAdmin(
+                                                      id: state
+                                                              .adminModel[index]
+                                                              .id ??
+                                                          0);
+                                            },
+                                            child: const Text('ຢືນຢັນ'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+                              },
+                              icon: const Icon(
+                                Icons.more_vert,
+                                color: Colors.black87,
+                                size: 20,
+                              ),
                             ),
                           ),
                         ),

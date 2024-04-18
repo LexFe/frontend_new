@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:frontend/common/values/constant.dart';
 import 'package:frontend/global.dart';
 
-
 class HttpUtil {
   late Dio dio;
   static final HttpUtil _instance = HttpUtil._internal();
@@ -75,7 +74,25 @@ class HttpUtil {
     return response;
   }
 
-  Future patch(String path,
+  Future delete(String path,
+      {Options? options, Map<String, dynamic>? queryParameters}) async {
+    Options reqOptions = options ?? Options();
+    reqOptions.headers = reqOptions.headers ?? {};
+    Map<String, dynamic>? login = getLoginTokenHaeder();
+    // ignore: unnecessary_null_comparison
+    if (login != null) {
+      reqOptions.headers!.addAll(login);
+      reqOptions.validateStatus = (_) => true;
+    }
+    var response = await dio.delete(
+      path,
+      queryParameters: queryParameters,
+      options: reqOptions,
+    );
+    return response;
+  }
+
+  Future put(String path,
       {dynamic data,
       Options? options,
       Map<String, dynamic>? queryParameters}) async {
@@ -88,7 +105,7 @@ class HttpUtil {
       reqOptions.validateStatus = (_) => true;
     }
 
-    var response = await dio.patch(path,
+    var response = await dio.put(path,
         data: data, queryParameters: queryParameters, options: reqOptions);
     return response;
   }
