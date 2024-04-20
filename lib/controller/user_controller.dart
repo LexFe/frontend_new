@@ -44,7 +44,8 @@ class UserController {
 
   Future<void> handleDeleteUser({required int id}) async {
     try {
-      Response response = await HttpUtil().delete('/user/delete?id=$id');
+      Response response =
+          await HttpUtil().delete('/predict/delete-data-predict?id=$id');
       if (response.statusCode == 200) {
         handleGetUser();
         Navigator.pop(context);
