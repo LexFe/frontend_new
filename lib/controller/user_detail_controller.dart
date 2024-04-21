@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/common/utils/http_utils.dart';
-import 'package:frontend/controller/admin_controller.dart';
 import 'package:frontend/controller/user_controller.dart';
 import 'package:frontend/screen/admin_detail/bloc/admin_detail_bloc.dart';
 import 'package:frontend/screen/user_detail/bloc/user_detail_bloc.dart';

@@ -123,8 +123,8 @@ class _UserDetailPagesState extends State<UserDetailPages> {
                     ? TextEditingController(
                         text: userModel?.pregnancies.toString())
                     : pregnanciesController,
-                labelText: 'pregnancies',
-                hintText: 'pregnancies',
+                labelText: 'ຈຳນວນຖືພາ',
+                hintText: 'ຈຳນວນຖືພາ',
                 onChanged: (value) {
                   context.read<UserDetailBloc>().add(
                         ChangePregnancies(
@@ -138,8 +138,8 @@ class _UserDetailPagesState extends State<UserDetailPages> {
                 controller: glucoseController.value.text.isEmpty
                     ? TextEditingController(text: userModel?.glucose.toString())
                     : glucoseController,
-                labelText: 'glucose',
-                hintText: 'glucose',
+                labelText: 'ຄ່ານ້ຳຕານ',
+                hintText: 'ຄ່ານ້ຳຕານ',
                 onChanged: (value) {
                   context.read<UserDetailBloc>().add(
                         ChangeGlucose(glucose: int.tryParse(value) ?? 0),
@@ -153,8 +153,8 @@ class _UserDetailPagesState extends State<UserDetailPages> {
                     ? TextEditingController(
                         text: userModel?.bloodPressure.toString())
                     : bloodPressureController,
-                labelText: 'bloodPressure',
-                hintText: 'bloodPressure',
+                labelText: 'ຄວາມ​ດັນ​ເລືອດ',
+                hintText: 'ຄວາມ​ດັນ​ເລືອດ',
                 onChanged: (value) {
                   context.read<UserDetailBloc>().add(
                         ChangeBloodPressure(
@@ -169,8 +169,8 @@ class _UserDetailPagesState extends State<UserDetailPages> {
                     ? TextEditingController(
                         text: userModel?.skinthickness.toString())
                     : skinThicknessController,
-                labelText: 'skinThickness',
-                hintText: 'skinThickness',
+                labelText: 'ຄວາມໜາຂອງຜິວໜັງ',
+                hintText: 'ຄວາມໜາຂອງຜິວໜັງ',
                 onChanged: (value) {
                   context.read<UserDetailBloc>().add(
                         ChangeSkinThickness(
@@ -184,8 +184,8 @@ class _UserDetailPagesState extends State<UserDetailPages> {
                 controller: insulinController.value.text.isEmpty
                     ? TextEditingController(text: userModel?.insulin.toString())
                     : insulinController,
-                labelText: 'insulin',
-                hintText: 'insulin',
+                labelText: 'ຄ່າອີນຊູລິນ',
+                hintText: 'ຄ່າອີນຊູລິນ',
                 onChanged: (value) {
                   context.read<UserDetailBloc>().add(
                         ChangeInsulin(insulin: int.tryParse(value) ?? 0),
@@ -214,8 +214,8 @@ class _UserDetailPagesState extends State<UserDetailPages> {
                     ? TextEditingController(
                         text: userModel?.diabetespedigreefunction.toString())
                     : diabetesPedigreeFunctionController,
-                labelText: 'diabetes',
-                hintText: 'diabetes',
+                labelText: 'ຄວາມສ່ຽງຈາກກຳມະພັນ',
+                hintText: 'ຄວາມສ່ຽງຈາກກຳມະພັນ',
                 onChanged: (value) {
                   context.read<UserDetailBloc>().add(
                         ChangeDiabetesPedigreeFunction(
