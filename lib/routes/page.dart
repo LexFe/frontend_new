@@ -14,6 +14,8 @@ import 'package:frontend/screen/main_manage/bloc/main_manage_bloc.dart';
 import 'package:frontend/screen/main_manage/main_manage.dart';
 import 'package:frontend/screen/predict/bloc/predict_bloc.dart';
 import 'package:frontend/screen/predict/predict.dart';
+import 'package:frontend/screen/predicts_detail/bloc/predict_detail_bloc.dart';
+import 'package:frontend/screen/predicts_detail/predicts_detail.dart';
 import 'package:frontend/screen/predists/bloc/predicts_bloc.dart';
 import 'package:frontend/screen/predists/predicts.dart';
 import 'package:frontend/screen/recomment/bloc/recomment_bloc.dart';
@@ -94,6 +96,13 @@ class AppPage {
         page: const UserDetailPages(),
         bloc: BlocProvider(
           create: (_) => UserDetailBloc(),
+        ),
+      ),
+      PageEntity(
+        route: AppRoutes.PredictDetail,
+        page: const PredictDetailPages(),
+        bloc: BlocProvider(
+          create: (_) => PredictDetailBloc(),
         ),
       ),
     ];

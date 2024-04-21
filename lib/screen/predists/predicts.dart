@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/common/enum/state_status.dart';
 import 'package:frontend/controller/predicts_controller.dart';
+import 'package:frontend/routes/name.dart';
 import 'package:frontend/screen/predists/bloc/predicts_bloc.dart';
 
 class PredictsPages extends StatefulWidget {
@@ -84,22 +85,32 @@ class _PredictsPagesState extends State<PredictsPages> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(top: 5),
-                        child: Card(
-                          elevation: 2,
-                          color: Colors.white,
-                          child: ListTile(
-                            leading: const Icon(
-                              Icons.account_circle_rounded,
-                              color: Colors.blue,
-                              size: 40,
-                            ),
-                            title: Text(state.predictsModel[index].name ?? ''),
-                            subtitle:
-                                Text(state.predictsModel[index].predict ?? ''),
-                            trailing: const Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: Colors.black26,
-                              size: 20,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              AppRoutes.PredictDetail,
+                              arguments: state.predictsModel[index],
+                            );
+                          },
+                          child: Card(
+                            elevation: 2,
+                            color: Colors.white,
+                            child: ListTile(
+                              leading: const Icon(
+                                Icons.account_circle_rounded,
+                                color: Colors.blue,
+                                size: 40,
+                              ),
+                              title:
+                                  Text(state.predictsModel[index].name ?? ''),
+                              subtitle: Text(
+                                  state.predictsModel[index].predict ?? ''),
+                              trailing: const Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                color: Colors.black26,
+                                size: 20,
+                              ),
                             ),
                           ),
                         ),

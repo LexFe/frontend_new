@@ -1,3 +1,4 @@
+
 class AppRoutes {
   // ignore: constant_identifier_names
   static const Home = "/home";
@@ -28,4 +29,7 @@ class AppRoutes {
 
   // ignore: constant_identifier_names
   static const UserDeetail = "/user-detail";
+
+  // ignore: constant_identifier_names
+  static const PredictDetail = "/predict-detail";
 }

@@ -5,6 +5,7 @@ import 'package:frontend/screen/home/bloc/home_bloc.dart';
 import 'package:frontend/screen/login/bloc/login_bloc.dart';
 import 'package:frontend/screen/main_manage/bloc/main_manage_bloc.dart';
 import 'package:frontend/screen/predict/bloc/predict_bloc.dart';
+import 'package:frontend/screen/predicts_detail/bloc/predict_detail_bloc.dart';
 import 'package:frontend/screen/predists/bloc/predicts_bloc.dart';
 import 'package:frontend/screen/recomment/bloc/recomment_bloc.dart';
 import 'package:frontend/screen/user/bloc/user_bloc.dart';
@@ -41,6 +42,9 @@ class AppBlocProvider {
         ),
         BlocProvider(
           create: (context) => UserDetailBloc(),
+        ),
+        BlocProvider(
+          create: (context) => PredictDetailBloc(),
         ),
       ];
 }
