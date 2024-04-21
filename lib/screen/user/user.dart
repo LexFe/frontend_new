@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/common/enum/state_status.dart';
 import 'package:frontend/controller/user_controller.dart';
 import 'package:frontend/routes/name.dart';
-import 'package:frontend/screen/admin/bloc/admin_bloc.dart';
 import 'package:frontend/screen/user/bloc/user_bloc.dart';
 
 class UserPages extends StatefulWidget {
@@ -26,7 +25,7 @@ class _UserPagesState extends State<UserPages> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, AppRoutes.AdminDetail);
+          Navigator.pushNamed(context, AppRoutes.UserDeetail);
         },
         backgroundColor: Colors.blue,
         child: const Icon(
@@ -41,7 +40,7 @@ class _UserPagesState extends State<UserPages> {
         centerTitle: true,
         foregroundColor: Colors.white,
         title: const Text(
-          'ແກ້ໄຂຂໍ້ມູນແອັດມີນ',
+          'ແກ້ໄຂຂໍ້ມູນລູກຄ້າ',
           style: TextStyle(
             color: Colors.white,
             fontSize: 26,
@@ -121,9 +120,9 @@ class _UserPagesState extends State<UserPages> {
                               ],
                               onSelected: (value) {
                                 if (value == 1) {
-                                  // UserController(context: context)
-                                  //     .onclickEditAdmin(
-                                  //         adminModel: state.userModels[index]);
+                                  UserController(context: context)
+                                      .onclickEditAdmin(
+                                          userModel: state.userModels[index]);
                                 } else if (value == 2) {
                                   showDialog(
                                     context: context,

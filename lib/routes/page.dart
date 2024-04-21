@@ -20,6 +20,8 @@ import 'package:frontend/screen/recomment/bloc/recomment_bloc.dart';
 import 'package:frontend/screen/recomment/recomment.dart';
 import 'package:frontend/screen/user/bloc/user_bloc.dart';
 import 'package:frontend/screen/user/user.dart';
+import 'package:frontend/screen/user_detail/bloc/user_detail_bloc.dart';
+import 'package:frontend/screen/user_detail/user_detail.dart';
 
 class AppPage {
   static List<PageEntity> routes() {
@@ -85,6 +87,13 @@ class AppPage {
         page: const UserPages(),
         bloc: BlocProvider(
           create: (_) => UserBloc(),
+        ),
+      ),
+      PageEntity(
+        route: AppRoutes.UserDeetail,
+        page: const UserDetailPages(),
+        bloc: BlocProvider(
+          create: (_) => UserDetailBloc(),
         ),
       ),
     ];

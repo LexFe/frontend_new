@@ -16,7 +16,7 @@ class _AdminDetailPagesState extends State<AdminDetailPages> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  late final AdminModel adminModel;
+  AdminModel? adminModel;
 
   @override
   void initState() {
@@ -26,10 +26,17 @@ class _AdminDetailPagesState extends State<AdminDetailPages> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    adminModel = ModalRoute.of(context)!.settings.arguments as AdminModel;
-    context.read<AdminDetailBloc>().add(ChangeEmail(email: adminModel.email!));
-    context.read<AdminDetailBloc>().add(ChangeName(name: adminModel.name!));
-    context.read<AdminDetailBloc>().add(ChangePhone(phone: adminModel.phone!));
+    final arguments = ModalRoute.of(context)!.settings.arguments;
+    if (arguments is AdminModel) {
+      adminModel = arguments;
+      context
+          .read<AdminDetailBloc>()
+          .add(ChangeEmail(email: adminModel!.email!));
+      context.read<AdminDetailBloc>().add(ChangeName(name: adminModel!.name!));
+      context
+          .read<AdminDetailBloc>()
+          .add(ChangePhone(phone: adminModel!.phone!));
+    }
   }
 
   @override
@@ -68,7 +75,7 @@ class _AdminDetailPagesState extends State<AdminDetailPages> {
               buildPhoneTextFrom(
                   context: context,
                   controller: nameController.value.text.isEmpty
-                      ? TextEditingController(text: adminModel.name)
+                      ? TextEditingController(text: adminModel?.name ?? '')
                       : nameController,
                   labelText: 'ຊື່',
                   hintText: 'ຊື່',
@@ -80,7 +87,7 @@ class _AdminDetailPagesState extends State<AdminDetailPages> {
               buildPhoneTextFrom(
                 context: context,
                 controller: phoneController.value.text.isEmpty
-                    ? TextEditingController(text: adminModel.phone)
+                    ? TextEditingController(text: adminModel?.phone ?? '')
                     : phoneController,
                 labelText: 'ເບີໂທ',
                 hintText: 'ເບີໂທ',
@@ -93,7 +100,7 @@ class _AdminDetailPagesState extends State<AdminDetailPages> {
               buildPhoneTextFrom(
                 context: context,
                 controller: emailController.value.text.isEmpty
-                    ? TextEditingController(text: adminModel.email)
+                    ? TextEditingController(text: adminModel?.email ?? '')
                     : emailController,
                 labelText: 'ອີເມວ',
                 hintText: 'ອີເມວ',
@@ -126,9 +133,9 @@ class _AdminDetailPagesState extends State<AdminDetailPages> {
               width: 400,
               child: ElevatedButton(
                 onPressed: () {
-                  if (adminModel.id != null) {
+                  if (adminModel?.id != null) {
                     AdminDetailController(context: context)
-                        .handleUpdateAdmin(id: adminModel.id.toString());
+                        .handleUpdateAdmin(id: adminModel!.id.toString());
                   } else {
                     AdminDetailController(context: context).handleAddAdmin();
                   }
@@ -140,7 +147,7 @@ class _AdminDetailPagesState extends State<AdminDetailPages> {
                   ),
                 ),
                 child: Text(
-                  adminModel.id == null ? 'ບັນທຶກ' : 'ແກ້ໄຂ',
+                  adminModel?.id == null ? 'ບັນທຶກ' : 'ປ່ຽນແກ້ໄຂ',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,

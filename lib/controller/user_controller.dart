@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/common/enum/state_status.dart';
 import 'package:frontend/common/utils/http_utils.dart';
-import 'package:frontend/model/admin_model.dart';
 import 'package:frontend/model/user_model.dart';
 import 'package:frontend/routes/name.dart';
 import 'package:frontend/screen/user/bloc/user_bloc.dart';
@@ -38,38 +37,39 @@ class UserController {
     }
   }
 
-  Future<void> onclickEditAdmin({required AdminModel adminModel}) async {
-    Navigator.pushNamed(context, AppRoutes.AdminDetail, arguments: adminModel);
+  Future<void> onclickEditAdmin({required UserModel userModel}) async {
+    Navigator.pushNamed(context, AppRoutes.UserDeetail, arguments: userModel);
   }
 
   Future<void> handleDeleteUser({required int id}) async {
-  try {
-    print(id);
-    // Make sure HttpUtil().delete method returns a Response object
-    Response response = await HttpUtil().delete('/predict/delete-data-predict?id=$id');
+    try {
+      print(id);
+      // Make sure HttpUtil().delete method returns a Response object
+      Response response =
+          await HttpUtil().delete('/predict/delete-data-predict?id=$id');
 
-    if (response.statusCode == 200) {
-      // Assuming the API returns a JSON response
-      Map<String, dynamic> responseData = response.data; // Parse the response data
+      if (response.statusCode == 200) {
+        // Assuming the API returns a JSON response
+        Map<String, dynamic> responseData =
+            response.data; // Parse the response data
 
-      // Handle responseData based on expected structure
-      // For example, check if responseData contains success message or other data
+        // Handle responseData based on expected structure
+        // For example, check if responseData contains success message or other data
 
-      handleGetUser(); // Consider what this function does
+        handleGetUser(); // Consider what this function does
 
-      Navigator.pop(context); // Close the current screen
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('ສຳເລັດການລົບຂໍ້ມູນ'),
-        ),
-      );
-    } else {
-      // Handle other status codes (e.g., show error message)
-      debugPrint('Error: ${response.statusCode} - ${response.data}');
+        Navigator.pop(context); // Close the current screen
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('ສຳເລັດການລົບຂໍ້ມູນ'),
+          ),
+        );
+      } else {
+        // Handle other status codes (e.g., show error message)
+        debugPrint('Error: ${response.statusCode} - ${response.data}');
+      }
+    } catch (e) {
+      debugPrint('Error: $e'); // Log any unexpected errors
     }
-  } catch (e) {
-    debugPrint('Error: $e'); // Log any unexpected errors
   }
-}
-
 }   // Path: lib/controller/admin_controller.dart 

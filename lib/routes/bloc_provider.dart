@@ -8,6 +8,7 @@ import 'package:frontend/screen/predict/bloc/predict_bloc.dart';
 import 'package:frontend/screen/predists/bloc/predicts_bloc.dart';
 import 'package:frontend/screen/recomment/bloc/recomment_bloc.dart';
 import 'package:frontend/screen/user/bloc/user_bloc.dart';
+import 'package:frontend/screen/user_detail/bloc/user_detail_bloc.dart';
 
 class AppBlocProvider {
   static get allBlocProvider => [
@@ -37,6 +38,9 @@ class AppBlocProvider {
         ),
         BlocProvider(
           create: (context) => UserBloc(),
+        ),
+        BlocProvider(
+          create: (context) => UserDetailBloc(),
         ),
       ];
 }

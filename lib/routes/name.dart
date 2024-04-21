@@ -18,11 +18,14 @@ class AppRoutes {
   static const Recomment = "/recomment";
 
   // ignore: constant_identifier_names
-  static const  Login = "/login";
+  static const Login = "/login";
 
   // ignore: constant_identifier_names
   static const String AdminDetail = "/admin-detail";
 
   // ignore: constant_identifier_names
   static const User = "/user";
+
+  // ignore: constant_identifier_names
+  static const UserDeetail = "/user-detail";
 }
