@@ -143,10 +143,10 @@ class _UserPagesState extends State<UserPages> {
                                             onPressed: () {
                                               UserController(context: context)
                                                   .handleDeleteUser(
-                                                      id: state
-                                                              .userModels[index]
-                                                              .id ??
-                                                          0);
+                                                id: state
+                                                        .userModels[index].id ??
+                                                    0,
+                                              );
                                             },
                                             child: const Text('ຢືນຢັນ'),
                                           ),

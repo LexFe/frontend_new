@@ -43,22 +43,33 @@ class UserController {
   }
 
   Future<void> handleDeleteUser({required int id}) async {
-    try {
-      Response response =
-          await HttpUtil().delete('/predict/delete-data-predict?id=$id');
-      if (response.statusCode == 200) {
-        handleGetUser();
-        Navigator.pop(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('ສຳເລັດການລົບຂໍ້ມູນ'),
-          ),
-        );
-      } else {
-        debugPrint(response.data);
-      }
-    } catch (e) {
-      debugPrint(e.toString());
+  try {
+    print(id);
+    // Make sure HttpUtil().delete method returns a Response object
+    Response response = await HttpUtil().delete('/predict/delete-data-predict?id=$id');
+
+    if (response.statusCode == 200) {
+      // Assuming the API returns a JSON response
+      Map<String, dynamic> responseData = response.data; // Parse the response data
+
+      // Handle responseData based on expected structure
+      // For example, check if responseData contains success message or other data
+
+      handleGetUser(); // Consider what this function does
+
+      Navigator.pop(context); // Close the current screen
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('ສຳເລັດການລົບຂໍ້ມູນ'),
+        ),
+      );
+    } else {
+      // Handle other status codes (e.g., show error message)
+      debugPrint('Error: ${response.statusCode} - ${response.data}');
     }
+  } catch (e) {
+    debugPrint('Error: $e'); // Log any unexpected errors
   }
+}
+
 }   // Path: lib/controller/admin_controller.dart 
